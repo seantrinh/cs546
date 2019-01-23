@@ -12,7 +12,23 @@ const questionOne = function questionOne(arr) {
 }
 
 const questionTwo = function questionTwo(num) { 
-    // Implement question 2 here
+	if (num == 0) { return 0; }
+	if (num == 1) { return 1; }
+	var first = 0;
+	var second = 1;
+	var index = 2;
+	var save;
+	while (true) {
+		if (num == index) {
+			return first + second;
+		}
+		else {
+			save = second;
+			second = first + second;
+			first = save;
+			index += 1;
+		}
+	}
 }
 
 const questionThree = function questionThree(text) {
