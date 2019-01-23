@@ -2,7 +2,13 @@
 //I pledge my honor that I have abided by the Stevens Honor System.
 
 const questionOne = function questionOne(arr) {
-    // Implement question 1 here
+	//Calculates sum of squares
+	var i;
+	var sum = 0;
+	for (i = 0; i < arr.length; i++) {
+		sum += Math.pow(arr[i],2);
+	}
+	return sum;
 }
 
 const questionTwo = function questionTwo(num) { 
