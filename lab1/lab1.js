@@ -3,21 +3,22 @@
 
 const questionOne = function questionOne(arr) {
 	//Calculates sum of squares
-	var i;
-	var sum = 0;
-	for (i = 0; i < arr.length; i++) {
+	let i = 0;
+	let sum = 0;
+	for (i; i < arr.length; i++) {
 		sum += Math.pow(arr[i],2);
 	}
 	return sum;
 }
 
-const questionTwo = function questionTwo(num) { 
+const questionTwo = function questionTwo(num) {
+	//Finds the 'num'th fibonacci number 
 	if (num == 0) { return 0; }
 	if (num == 1) { return 1; }
-	var first = 0;
-	var second = 1;
-	var index = 2;
-	var save;
+	let first = 0;
+	let second = 1;
+	let index = 2;
+	let save = 0;
 	while (true) {
 		if (num == index) {
 			return first + second;
@@ -32,7 +33,18 @@ const questionTwo = function questionTwo(num) {
 }
 
 const questionThree = function questionThree(text) {
-    // Implement question 3 here
+	//Returns the number of vowels in a string
+	let revisedText = text.toLowerCase();
+	let sum = 0;
+	let i = 0;
+	let test = '';
+	for (i; i < revisedText.length; i++) {
+		test = revisedText.charAt(i);
+		if (test == 'a' || test == 'e' || test == 'i' || test == 'o' || test == 'u') {
+			sum += 1;
+		}
+	}
+	return sum;
 }
 
 const questionFour = function questionFour(num) {
