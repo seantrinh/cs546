@@ -48,7 +48,15 @@ const questionThree = function questionThree(text) {
 }
 
 const questionFour = function questionFour(num) {
-    // Implement question 4 here
+	//Computes num factorial
+	if (num < 0) { return NaN; }
+	if (num == 0) { return 1; }
+	let i = 1;
+	let factorial = 1;
+	for (i; i <= num; i++) {
+		factorial *= i;
+	}
+	return factorial;
 }
 
 module.exports = {

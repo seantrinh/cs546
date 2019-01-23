@@ -33,5 +33,13 @@ console.log(lab1.questionThree("The brown fox jumped over the lazy dog."));
 console.log(lab1.questionThree("My name is Sean Trinh."));
 // should output 6
 
-//console.log(lab1.questionFour(10)); 
-// should output 3628800 
+console.log(lab1.questionFour(10)); 
+// should output 3628800
+console.log(lab1.questionFour(-10));
+// should output NaN
+console.log(lab1.questionFour(0));
+// should output 1
+console.log(lab1.questionFour(1));
+// should output 1
+console.log(lab1.questionFour(5));
+// should output 120 
