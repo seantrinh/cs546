@@ -33,6 +33,3 @@ const mapValues = function mapValues(object, func) {
 const first = { x: 2, y: 3};
 const second = { a: 70, x: 4, z: 5};
 const third = { x: 0, y: 9, q: 10};
-console.log(extend(first,second,third));
-console.log(extend(second,third));
-console.log(extend(third,first,second));
