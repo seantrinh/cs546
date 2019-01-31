@@ -23,13 +23,24 @@ const extend = function extend(...args) {
 }
 
 const smush = function smush(...args) {
-
+	if (args.length < 2) {
+		throw "Number of arguments must be at least 2!";
+	}
+	else {
+		let i = 0;
+		let obj = {};
+		for (i; i < args.length; i++) {
+			if (typeof args[i] != "object" || args[i] === undefined) {
+				throw "An invalid argument encountered!";
+			}
+			for (var attr in args[i]) {
+				obj[attr] = args[i][attr];
+			}
+		}
+		return obj;
+	}
 }
 
 const mapValues = function mapValues(object, func) {
 
 }
-
-const first = { x: 2, y: 3};
-const second = { a: 70, x: 4, z: 5};
-const third = { x: 0, y: 9, q: 10};
