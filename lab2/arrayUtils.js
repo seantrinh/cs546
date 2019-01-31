@@ -52,5 +52,16 @@ const countElements = function countElements(arr) {
 }
 
 const isEqual = function isEqual(arrayOne,arrayTwo) {
-
+	if (!Array.isArray(arrayOne) || !Array.isArray(arrayTwo)
+		|| arrayOne === undefined || arrayTwo === undefined) {
+		throw "Not valid arrays!";
+	}
+	else {
+		if (arrayOne.length != arrayTwo.length) { return false; }
+		let i = 0;
+		for (i; i < arrayOne.length; i++) {
+			if (arrayOne[i] != arrayTwo[i]) { return false; }
+		}
+		return true;
+	}
 }
