@@ -3,7 +3,8 @@
 
 const head = function head(arr) {
         //Returns the head of the array
-        
+	if (!Array.isArray(arr) || !arr.length) { throw "Not a valid array!"; }
+	else { return arr[0]; }
 }
 
 const last = function last(arr) {
@@ -16,7 +17,7 @@ const remove = function remove(arr,index) {
 
 }
 
-const range(end,value) = function range(end,value) {
+const range = function range(end,value) {
 	
 }
 
@@ -27,5 +28,4 @@ const countElements = function countElements(arr) {
 const isEqual = function isEqual(arrayOne,arrayTwo) {
 
 }
-
 
