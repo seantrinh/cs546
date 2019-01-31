@@ -65,3 +65,12 @@ const isEqual = function isEqual(arrayOne,arrayTwo) {
 		return true;
 	}
 }
+
+module.exports = {
+	head,
+	last,
+	remove,
+	range,
+	countElements,
+	isEqual
+};
