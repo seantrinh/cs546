@@ -9,7 +9,8 @@ const head = function head(arr) {
 
 const last = function last(arr) {
 	//Returns the last element of the array
-
+	if (!Array.isArray(arr) || !arr.length) { throw "Not a valid array!"; }
+	else { return arr[arr.length - 1]; }
 }
 
 const remove = function remove(arr,index) {
@@ -28,4 +29,3 @@ const countElements = function countElements(arr) {
 const isEqual = function isEqual(arrayOne,arrayTwo) {
 
 }
-
