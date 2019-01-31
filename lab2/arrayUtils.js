@@ -15,7 +15,12 @@ const last = function last(arr) {
 
 const remove = function remove(arr,index) {
 	//Removes the element at the specified index
-
+	if (!Array.isArray(arr) || !arr.length) { throw "Not a valid array!"; }
+	if (index < 0 || index >= arr.length) { throw "Index out of bounds!"; }
+	else {
+		arr.splice(index, 1);
+		return arr;
+	}
 }
 
 const range = function range(end,value) {
