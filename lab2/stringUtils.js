@@ -12,7 +12,20 @@ const capitalize = function capitalize(string) {
 }
 
 const repeat = function repeat(string, num) {
-
+	if (typeof string != "string" || string === undefined) {
+		throw "Not a valid string!";
+	}
+	if (num < 0) { throw "Not a valid number!"; }
+	else {
+		if (num == 0 || string == "") { return ""; }
+		if (num == 1) { return string; }
+		let i = 1;
+		const save = string;
+		for (i; i < num; i++) {
+			string = string + save;
+		}
+		return string;
+	}
 }
 
 const countChars = function countChars(string) {
