@@ -24,7 +24,18 @@ const remove = function remove(arr,index) {
 }
 
 const range = function range(end,value) {
-	
+	if (isNaN(end) || !Number.isInteger(end) || end <= 0) {
+		throw "Not a valid number!";
+	}
+	let arr = [];
+	let i = 0;
+	if (value) {
+		for (i; i < end; i++) { arr[i] = value; }
+	}
+	else {
+		for (i; i < end; i++) { arr[i] = i; }
+	}
+	return arr;
 }
 
 const countElements = function countElements(arr) {
