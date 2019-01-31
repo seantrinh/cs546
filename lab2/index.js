@@ -19,14 +19,14 @@ try {
 
 //Last Tests
 try {
-	const tailOne = arrayUtils.tail([1,2,3]);
+	const tailOne = arrayUtils.last([1,2,3]);
 	console.log('Tail passed SUCCESSFULLY');
 } catch (e) {
 	console.error('Tail FAILED test case');
 }
 
 try {
-	const tailTwo = arrayUtils.tail();
+	const tailTwo = arrayUtils.last();
 	console.error('Tail DID NOT ERROR');
 } catch (e) {
 	console.log('Tail failed SUCCESSFULLY');
