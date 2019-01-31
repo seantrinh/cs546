@@ -39,7 +39,16 @@ const range = function range(end,value) {
 }
 
 const countElements = function countElements(arr) {
-
+	if (!Array.isArray(arr) || arr === undefined) { throw "Not a valid array!"; }
+	else {
+		const dict = { };
+		let i = 0;
+		for (i; i < arr.length; i++) {
+			if (dict[arr[i]]) { dict[arr[i]] += 1; }
+			else { dict[arr[i]] = 1; }
+		}
+		return dict;
+	}
 }
 
 const isEqual = function isEqual(arrayOne,arrayTwo) {
