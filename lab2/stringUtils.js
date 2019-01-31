@@ -42,3 +42,9 @@ const countChars = function countChars(string) {
                 return dict;
 	}
 }
+
+module.exports = {
+        capitalize,
+	repeat,
+	countChars
+}; 

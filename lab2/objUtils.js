@@ -57,3 +57,9 @@ const mapValues = function mapValues(object, func) {
 		return object;
 	}
 }
+
+module.exports = {
+        extend,
+	smush,
+	mapValues
+}; 
