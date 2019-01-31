@@ -29,5 +29,16 @@ const repeat = function repeat(string, num) {
 }
 
 const countChars = function countChars(string) {
-
+	if (typeof string != "string" || string === undefined) {
+		throw "Not a valid string!";
+	}
+	else {
+                const dict = { };
+                let i = 0;
+                for (i; i < string.length; i++) {
+                        if (dict[string[i]]) { dict[string[i]] += 1; }
+                        else { dict[string[i]] = 1; }
+              	}
+                return dict;
+	}
 }
