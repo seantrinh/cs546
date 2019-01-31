@@ -42,5 +42,18 @@ const smush = function smush(...args) {
 }
 
 const mapValues = function mapValues(object, func) {
-
+	if (typeof object != "object" || object === undefined) {
+		throw "First argument not an object!";
+	}
+	if (typeof func !=  "function" || func === undefined) {
+		throw "Second argument must be a valid function!";
+	}
+	else {
+		let i = 0;
+		for (var attr in object) {
+			try { object[attr] = func(object[attr]); }
+			catch(e) { throw "Type mismatch!"; }
+		}
+		return object;
+	}
 }
