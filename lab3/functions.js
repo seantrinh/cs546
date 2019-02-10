@@ -12,16 +12,23 @@ const getPersonById = async function getPersonById(index) {
 	if (isNaN(index) || !Number.isInteger(index) || index === undefined) {
 		throw "Integer not provided!";
 	}
-	if (index < 0) { throw "Index out of bounds!"; }
 	data = await getPeople();
-	if (index >= data.data.length) {
+	if (index < 0 || index >= data.data.length) {
 		throw "Index out of bounds!";
 	}
 	return data.data[index].firstName + " " + data.data[index].lastName;
 }
 
-const lexIndex = function lexIndex(index) {
-
+const lexIndex = async function lexIndex(index) {
+	if (isNaN(index) || !Number.isInteger(index) || index === undefined) {
+		throw "Integer not provided!";
+	}
+	data = await getPeople();
+	if (index < 0 || index >= data.data.length) {
+		throw "Index out of bounds!";
+	}
+	data.data.sort(function(a,b){return a.lastName.localeCompare(b.lastName);});
+	return data.data[index].firstName + " " + data.data[index].lastName;
 }
 
 const firstNameMetrics = function firstNameMetrics() {
@@ -40,7 +47,7 @@ const findTheHacker = function findTheHacker(ip) {
 
 }
 
-let test = getPersonById(42);
+let test = lexIndex(2);
 test.then(function(result) {
 	console.log(test);
-}, (error) => { console.log("Error"); });
+}).catch(err => { console.log(err); });
