@@ -1,9 +1,11 @@
 // Lab 3 - CS 546
 // I pledge my honor that I have abided by the Stevens Honor System.
 const axios = require('axios');
+const peopleLink = 'https://gist.githubusercontent.com/robherley/5112d73f5c69a632ef3ae9b7b3073f78/raw/24a7e1453e65a26a8aa12cd0fb266ed9679816aa/people.json';
+
 
 const getPeople = async function getPeople() {
-	return await axios.get('https://gist.githubusercontent.com/robherley/5112d73f5c69a632ef3ae9b7b3073f78/raw/24a7e1453e65a26a8aa12cd0fb266ed9679816aa/people.json');
+	return await axios.get(peopleLink);
 }
 
 const getPersonById = async function getPersonById(index) {
@@ -39,8 +41,6 @@ const findTheHacker = function findTheHacker(ip) {
 }
 
 let test = getPersonById(42);
-console.log(test);
-
 test.then(function(result) {
 	console.log(test);
-});
+}, (error) => { console.log("Error"); });
