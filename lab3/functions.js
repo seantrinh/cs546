@@ -127,10 +127,29 @@ const whereDoTheyWork = async function whereDoTheyWork(firstName, lastName) {
 }
 
 const findTheHacker = async function findTheHacker(ip) {
-
+	if (typeof ip != "string" || ip === undefined) {
+		throw "Valid IP not provided!";
+	}
+	workData = await getWork();
+	let i = 0;
+	let social = undefined;
+	for (i; i < workData.data.length; i++) {
+		if (workData.data[i].ip == ip) {
+			social = workData.data[i].ssn;
+			break;
+		}
+	}
+	if (!social) { throw "IP does not exist!"; }
+	data = await getPeople();
+	let j = 0;
+	for (j; j < data.data.length; j++) {
+		if (data.data[j].ssn == social) {
+			return data.data[j].firstName + " " + data.data[j].lastName + " is the hacker!";
+		}
+	}
 }
 
-let test = whereDoTheyWork("Bob","Smith");
-test.then(function(result) {
-	console.log(test);
-}).catch(err => { console.log(err); });
+//let test = findTheHacker();
+//test.then(function(result) {
+//	console.log(test);
+//}).catch(err => { console.log(err); });
