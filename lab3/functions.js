@@ -96,15 +96,41 @@ const shouldTheyGoOutside = async function shouldTheyGoOutside(firstName, lastNa
 	}
 }
 
-const whereDoTheyWork = function whereDoTheyWork(firstName, lastName) {
+const whereDoTheyWork = async function whereDoTheyWork(firstName, lastName) {
+	if (typeof firstName != "string" || firstName === undefined || typeof lastName != "string" || lastName === undefined) {
+                throw "Valid first name and/or last name not provided!";
+        }
+	data = await getPeople();
+	let i = 0;
+        let social = undefined;
+        for (i; i < data.data.length; i++) {
+                if (data.data[i].firstName == firstName && data.data[i].lastName == lastName) {
+                        social = data.data[i].ssn;
+                        break;
+                }
+        }
+	if (!social) { throw "Person does not exist!"; }
+	workData = await getWork();
+	let j = 0;
+	for (j; j < workData.data.length; j++) {
+		if (workData.data[j].ssn == social) {
+			if (workData.data[j].willBeFired) {
+				return firstName + " " + lastName + " - " + workData.data[j].jobTitle +
+				" at " + workData.data[j].company + ". They will be fired.";
+			}
+			else {
+				return firstName + " " + lastName + " - " + workData.data[j].jobTitle +
+				" at " + workData.data[j].company + ". They will not be fired.";
+			}
+		}
+	}	
+}
+
+const findTheHacker = async function findTheHacker(ip) {
 
 }
 
-const findTheHacker = function findTheHacker(ip) {
-
-}
-
-let test = shouldTheyGoOutside("Bob","Smith");
+let test = whereDoTheyWork("Bob","Smith");
 test.then(function(result) {
 	console.log(test);
 }).catch(err => { console.log(err); });
