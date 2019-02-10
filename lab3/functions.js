@@ -68,8 +68,32 @@ const firstNameMetrics = async function firstNameMetrics() {
 	return {totalLetters, totalVowels, totalConsonants, longestName, shortestName};
 }
 
-const shouldTheyGoOutside = function shouldTheyGoOutside(firstName, lastName) {
-	
+const shouldTheyGoOutside = async function shouldTheyGoOutside(firstName, lastName) {
+	if (typeof firstName != "string" || firstName === undefined || typeof lastName != "string" || lastName === undefined) {
+		throw "Valid first name and/or last name not provided!";
+	}
+	data = await getPeople();
+	let i = 0;
+	let zipCode = undefined;
+	for (i; i < data.data.length; i++) {
+		if (data.data[i].firstName == firstName && data.data[i].lastName == lastName) {
+			zipCode = data.data[i].zip;
+			break;
+		}
+	}
+	if (!zipCode) { throw "Person does not exist!"; }
+	weatherData = await getWeather();
+	let j = 0;
+	for (j; j < weatherData.data.length; j++) {
+		if (weatherData.data[j].zip == zipCode) {
+			if (weatherData.data[j].temp >= 34) {
+				return "Yes, " + firstName + " should go outside.";
+			}
+			else {
+				return "No, " + firstName + " should not go outside.";
+			}
+		}
+	}
 }
 
 const whereDoTheyWork = function whereDoTheyWork(firstName, lastName) {
@@ -80,7 +104,7 @@ const findTheHacker = function findTheHacker(ip) {
 
 }
 
-let test = firstNameMetrics();
+let test = shouldTheyGoOutside("Bob","Smith");
 test.then(function(result) {
 	console.log(test);
 }).catch(err => { console.log(err); });
