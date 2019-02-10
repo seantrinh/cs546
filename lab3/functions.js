@@ -149,7 +149,16 @@ const findTheHacker = async function findTheHacker(ip) {
 	}
 }
 
-//let test = findTheHacker();
-//test.then(function(result) {
-//	console.log(test);
-//}).catch(err => { console.log(err); });
+module.exports = {
+        getPersonById,
+        lexIndex,
+        firstNameMetrics,
+        shouldTheyGoOutside,
+        whereDoTheyWork,
+        findTheHacker
+};
+
+let test = findTheHacker("79.222.167.180");
+test.then(function(result) {
+	console.log(test);
+}).catch(err => { console.log(err); });
