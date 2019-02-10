@@ -31,8 +31,32 @@ const lexIndex = async function lexIndex(index) {
 	return data.data[index].firstName + " " + data.data[index].lastName;
 }
 
-const firstNameMetrics = function firstNameMetrics() {
-
+const firstNameMetrics = async function firstNameMetrics() {
+	data = await getPeople();
+	let totalLetters = 0;
+	let totalVowels = 0;
+	let totalConsonants = 0;
+	let longestName = data.data[0].firstName;
+	let shortestName = data.data[0].firstName;
+	let i = 0;
+	for (i; i < data.data.length; i++) {
+		if (data.data[i].firstName.length > longestName.length) {
+			longestName = data.data[i].firstName;
+		}
+		if (data.data[i].firstName.length < shortestName.length) {
+			shortestName = data.data[i].firstName;
+		}
+		totalLetters += data.data[i].firstName.length;
+		let j = 0;
+		for (j; j < data.data[i].firstName.length; j++) {
+			let letter = data.data[i].firstName[j].toLowerCase();
+			if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
+				totalVowels += 1;
+			}
+			else { totalConsonants += 1; }
+		}
+	}
+	return {totalLetters, totalVowels, totalConsonants, longestName, shortestName};
 }
 
 const shouldTheyGoOutside = function shouldTheyGoOutside(firstName, lastName) {
@@ -47,7 +71,7 @@ const findTheHacker = function findTheHacker(ip) {
 
 }
 
-let test = lexIndex(2);
+let test = firstNameMetrics();
 test.then(function(result) {
 	console.log(test);
 }).catch(err => { console.log(err); });
