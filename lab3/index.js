@@ -3,7 +3,7 @@
 
 const functions = require('./functions');
 
-let test = functions.firstNameMetrics();
+let test = functions.getPersonById(0);
 test.then(function(result) {
         console.log(test);
 }).catch(err => { console.log(err); });
