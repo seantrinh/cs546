@@ -157,8 +157,3 @@ module.exports = {
         whereDoTheyWork,
         findTheHacker
 };
-
-let test = findTheHacker("79.222.167.180");
-test.then(function(result) {
-	console.log(test);
-}).catch(err => { console.log(err); });
