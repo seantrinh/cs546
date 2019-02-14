@@ -8,7 +8,27 @@ const work = require("./work");
 async function main() {
 	try {
 		const test1 = await people.getPersonById(43);
-		console.log(test1);
+		if (test1 == "Brew Peat") {
+			console.log("Success");
+		}
+		else { console.log("Failure"); }
+	} catch(e) {
+		console.log(e);
+	}
+
+	try {
+		const test2 = await people.lexIndex(2);
+		if (test2 == "Dermot Abberley") {
+			console.log("Success");
+		}
+		else { console.log("Failure"); }
+	} catch(e) {
+		console.log(e);
+	}
+
+	try {
+		const test3 = await people.firstNameMetrics();
+		console.log("Success");
 	} catch(e) {
 		console.log(e);
 	}
