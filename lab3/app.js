@@ -32,6 +32,56 @@ async function main() {
 	} catch(e) {
 		console.log(e);
 	}
+
+	try {
+		const test4 = await weather.shouldTheyGoOutside("Scotty","Barajaz");
+		if (test4 == "Yes, Scotty should go outside.") {
+			console.log("Success");
+		}
+		else { console.log("Failure"); }
+	} catch(e) {
+		console.log(e);
+	}
+	
+	try {
+		const test5 = await weather.shouldTheyGoOutside("Calli", "Ondrasek");
+		if (test5 == "No, Calli should not go outside.") {
+			console.log("Success");
+		}
+		else { console.log("Failure"); }
+	} catch(e) {
+		console.log(e);
+	}
+
+	try {
+		const test6 = await work.whereDoTheyWork("Demetra","Durrand");
+		if (test6 == "Demetra Durrand - Nuclear Power Engineer at Buzzshare. They will be fired.") {
+			console.log("Success");
+		}
+		else { console.log("Failure"); }
+	} catch(e) {
+		console.log(e);
+	}
+
+	try {
+		const test7 = await work.whereDoTheyWork("Hank","Tarling");
+		if (test7 == "Hank Tarling - Technical Writer at Babbleblab. They will not be fired.") {
+			console.log("Success");
+		}
+		else { console.log("Failure"); }
+	} catch(e) {
+		console.log(e);
+	}
+	
+	try {
+		const test8 = await work.findTheHacker("79.222.167.180");
+		if (test8 == "Robert Herley is the hacker!") {
+			console.log("Success");
+		}
+		else { console.log("Failure"); }
+	} catch(e) {
+		console.log(e);
+	}
 }
 
 //call main

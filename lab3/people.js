@@ -21,6 +21,7 @@ const getPersonById = async function getPersonById(id) {
         		return data.data[i].firstName + " " + data.data[i].lastName;
 		}
 	}
+	throw "ID does not exist!";
 }
 
 const lexIndex = async function lexIndex(index) {
