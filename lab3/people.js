@@ -7,15 +7,20 @@ const getPeople = async function getPeople() {
         return await axios.get(peopleLink);
 }
 
-const getPersonById = async function getPersonById(index) {
-        if (isNaN(index) || !Number.isInteger(index) || index === undefined) {
+const getPersonById = async function getPersonById(id) {
+        if (isNaN(id) || !Number.isInteger(id) || id === undefined) {
                 throw "Integer not provided!";
         }
         data = await getPeople();
-        if (index < 0 || index >= data.data.length) {
+        if (id <= 0 || id > data.data.length) {
                 throw "Index out of bounds!";
         }
-        return data.data[index].firstName + " " + data.data[index].lastName;
+	let i = 0;
+	for (i; i < data.data.length; i++) {
+		if (data.data[i].id == id) {
+        		return data.data[i].firstName + " " + data.data[i].lastName;
+		}
+	}
 }
 
 const lexIndex = async function lexIndex(index) {
