@@ -9,7 +9,6 @@
   "author": "Sean Trinh 10416232",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.1.13",
-    "settings": "^0.1.1"
+    "mongodb": "^3.1.13"
   }
 }
