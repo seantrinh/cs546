@@ -5,17 +5,22 @@ const animals = require("./data/animals");
 const connection = require("./mongoConnection");
 
 const main = async () => {
-	//const mortimer = await animals.create("Mortimer","Giraffe");
-	//console.log(mortimer);
+	try {
+		const mortimer = await animals.create("Mortimer","Giraffe");
+		console.log(mortimer);
 
-	//const allMyAnimals = await animals.getAll();
-	//console.log(allMyAnimals);
+		const removeM = await animals.remove(mortimer._id);
+		console.log(removeM);
+		
+		//const allMyAnimals = await animals.getAll();
+		//console.log(allMyAnimals);
 
-	//JUST FOR TESTING PURPOSES
-	const deleteAll = await animals.removeAll();
+		//JUST FOR TESTING PURPOSES
+		//const deleteAll = await animals.removeAll();
 	
-	const db = await connection();
-	await db.serverConfig.close();
+		const db = await connection();
+		await db.serverConfig.close();
+	} catch (error) { throw error; }
 };
 
 main().catch(error => {

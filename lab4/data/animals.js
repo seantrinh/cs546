@@ -33,7 +33,7 @@ module.exports = {
 		return animal_array;
 	},
 	async get(id) {
-		if (!id) {
+		if (!id || typeof id !== "string") {
 			throw "You must provide an id to search for!";
 		}	
 		const animalCollection = await animals();
@@ -44,16 +44,41 @@ module.exports = {
 		return animal;
 	},
 	async remove(id) {
-		if (!id) {
+		if (!id || typeof name !== "string") {
 			throw "You must provide an id to search for!";
 		}
 		const animalCollection = await animals();
+		const removedAnimal = await animalCollection.findOne({ _id: id });
+		if (removedAnimal === null) { throw "No animal with that id!"; }
 		const deletionInfo = await animalCollection.removeOne({ _id: id });
-		
 		if (deletionInfo.deletedCount === 0) {
 			throw `Could not delete animal with id of ${id}`;
 		}
-		return deletionInfo;
+		let rAnimal = {
+			deleted: true,
+			data: removedAnimal
+		}
+		return rAnimal;
+	},
+	async rename(id, newName) {
+		if (!id || typeof id !== "string") {
+			throw "You must provide an id to search for!";
+		}
+		if (!newName || typeof newName !== "string") {
+			throw "You must provide a valid new name!";
+		}
+		const animalCollection = await animals();
+		const animalToUpdate = await animalCollection.findOne({ _id: id });
+		if (animalToUpdate === null) { throw "No animal with that id!"; }
+		const updatedAnimal = {
+			name: newName,
+			animalType: animalToUpdate.animalType
+		}
+		const updateInfo = await animalCollection.updateOne({ _id: id}, updatedAnimal);
+		if (updateInfo.modifiedCount === 0) {
+			throw "Could not update dog successfully!";	
+		}
+		return await this.get(id);
 	},
 	async removeAll() {
 		//JUST FOR TESTING PURPOSES
