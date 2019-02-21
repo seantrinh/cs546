@@ -28,8 +28,9 @@ module.exports = {
 		return animal;
 	},
 	async getAll() {
-		//TODO
-		return 0;
+		const animalCollection = await animals();
+		const animal_array = await animalCollection.find({}).toArray();
+		return animal_array;
 	},
 	async get(id) {
 		if (!id) {
@@ -41,5 +42,23 @@ module.exports = {
 			throw "No animal with that id!";
 		}
 		return animal;
+	},
+	async remove(id) {
+		if (!id) {
+			throw "You must provide an id to search for!";
+		}
+		const animalCollection = await animals();
+		const deletionInfo = await animalCollection.removeOne({ _id: id });
+		
+		if (deletionInfo.deletedCount === 0) {
+			throw `Could not delete animal with id of ${id}`;
+		}
+		return deletionInfo;
+	},
+	async removeAll() {
+		//JUST FOR TESTING PURPOSES
+		const animalCollection = await animals();
+		const deletionInfo = await animalCollection.deleteMany({});
+		return deletionInfo;
 	}
 };
