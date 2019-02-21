@@ -6,9 +6,12 @@ const animals = mongoCollections.animals;
 
 module.exports = {
 	async create(name, animalType) {
-		#CHECK FOR ERRORS
-		if (!name) throw "You must provide a name for your animal!";
-		if (!animalType) throw "You must provide an animal type";
+		if (!name || typeof name !== "string") {
+			throw "Valid name not provided!";
+		}
+		if (!animalType || typeof animalType !== "string") {
+			throw "Valid animal type not provided!";
+		}
 		const animalCollection = await animals();
 	
 		let newAnimal = {
@@ -16,30 +19,27 @@ module.exports = {
 			animalType: animalType
 		};
 		const insertInfo = await animalCollection.insertOne(newAnimal);
-		if (insertInfo.insertedCount === 0) throw "Could not add animal";
-		
+		if (insertInfo.insertedCount === 0) {
+			 throw "Could not add animal!";
+		}
 		const newId = insertInfo.insertedId;
 		
 		const animal = await this.get(newId);
 		return animal;
 	},
 	async getAll() {
-
+		//TODO
+		return 0;
 	},
 	async get(id) {
-		#CHECK FOR ERRORS
-		if (!id) throw "You must provide an id to search for";
-		
+		if (!id) {
+			throw "You must provide an id to search for!";
+		}	
 		const animalCollection = await animals();
 		const animal = await animalCollection.findOne({ _id: id });
-		if (animal === null) throw "No animal with that id";
-		
+		if (animal === null) {
+			throw "No animal with that id!";
+		}
 		return animal;
 	}
 };
-
-async function main() {
-	const mortimer = await animals.create("Mortimer","Giraffe");
-	console.log(mortimer);
-}
-main();
