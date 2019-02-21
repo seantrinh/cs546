@@ -6,14 +6,24 @@ const connection = require("./mongoConnection");
 
 const main = async () => {
 	try {
-		const mortimer = await animals.create("Mortimer","Giraffe");
-		console.log(mortimer);
+		const sasha = await animals.create("Sasha","Dog");
+		console.log(sasha);
 
-		const removeM = await animals.remove(mortimer._id);
-		console.log(removeM);
+		const lucy = await animals.create("Lucy","Dog");
 		
-		//const allMyAnimals = await animals.getAll();
-		//console.log(allMyAnimals);
+		const allAnimals = await animals.getAll();
+		console.log(allAnimals);
+		
+		const duke = await animals.create("Duke","Walrus");
+		console.log(duke);
+
+		const sashita = await animals.rename(sasha._id, "Sashita");
+		console.log(sashita);
+
+		await animals.remove(lucy._id);
+
+		const allAnimals2 = await animals.getAll();
+		console.log(allAnimals2);
 
 		//JUST FOR TESTING PURPOSES
 		//const deleteAll = await animals.removeAll();
