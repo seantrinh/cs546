@@ -1,4 +1,4 @@
-const animals = require("./data/test");
+const animals = require("./data/animals");
 const connection = require("./mongoConnection");
 
 const main = async () => {
@@ -25,7 +25,7 @@ const main = async () => {
                 console.log(allAnimals2);
 
                 //JUST FOR TESTING PURPOSES
-                //const deleteAll = await animals.removeAll();
+                const deleteAll = await animals.removeAll();
 
                 const db = await connection();
                 await db.serverConfig.close();

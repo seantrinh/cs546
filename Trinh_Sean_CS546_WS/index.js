@@ -1,4 +1,4 @@
-const animals = require("./data/test");
+const animals = require("./data/animals");
 const connection = require("./mongoConnection");
 
 const main = async () => {
