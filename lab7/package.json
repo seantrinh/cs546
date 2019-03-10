@@ -7,5 +7,9 @@
     "start": "node index.js"
   },
   "author": "Sean Trinh 10416232",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.1.13"
+  }
 }
