@@ -86,6 +86,7 @@ module.exports = {
 		return await this.get(id);
 	},
 	async removeAll() {
+		// JUST FOR TESTING PURPOSES
 		const animalCollection = await animals();
 		const deletionInfo = await animalCollection.deleteMany({});
 		return deletionInfo;
