@@ -1,7 +1,7 @@
 // CS 546 - Lab 7
 // I pledge my honor that I have abided by the Stevens Honor System.
 const MongoClient = require("mongodb").MongoClient;
-const settings = require("./settings");
+const settings = require("../settings");
 const mongoConfig = settings.mongoConfig;
 
 let _connection = undefined;
