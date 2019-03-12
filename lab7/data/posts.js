@@ -41,17 +41,27 @@ module.exports = {
 		const post = await this.getPostById(String(newId));
 		return post;
 	},
-	async updatePost(id, title, author, content) {
-		if (!title || typeof title !== 'string') {
+	async updatePost(id, title, content) {
+		if (!id || typeof id !== 'string') {
+			throw "You must provide an id to search for!";
+		}
+		if (!title && !content) {
+			throw "You must provide a new title and/or new content!";
+		}
+		if (title && typeof title !== 'string') {
                         throw "Valid title not provided!";
                 }
-                if (!author || typeof author !== 'author') {
-                        throw "Valid author not provided!";
-                }
-                if (!content || typeof content !== 'content') {
+                if (content && typeof content !== 'string') {
                         throw "Valid content not provided!";
                 }
 		const postCollection = await posts();
+		const postToUpdate = await this.getPostById(id);
+		if (!title) {
+			title = postToUpdate.title;
+		}
+		if (!content) {
+			content = postToUpdate.content;
+		}
 		const updatedPost = {
 			title: title,
 			author: author,
@@ -85,5 +95,10 @@ module.exports = {
 		const postCollection = await posts();
                 const deletionInfo = await postCollection.deleteMany({});
                 return deletionInfo;
+	},
+	async getAllPosts() {
+		const postCollection = await posts();
+		const post_array = await postCollection.find({}).toArray();
+		return post_array;
 	}
 };
