@@ -63,22 +63,24 @@ module.exports = {
 		}
 		return rAnimal;
 	},
-	async rename(id, newName) {
+	async rename(id, newAnimal) {
 		if (!id || typeof id !== 'string') {
 			throw "You must provide an id to search for!";
 		}
-		if (!newName || typeof newName !== 'string') {
-			throw "You must provide a valid new name!";
+		if (!newAnimal.newName && !newAnimal.newType) {
+			throw "You must provide a new name and/or new type!";
+		}
+		const updatedAnimal = {};
+		if (newAnimal.newName) {
+			updatedAnimal.name = newAnimal.newName;
+		}
+		if (newAnimal.newType) {
+			updatedAnimal.animalType = newAnima.newType;
 		}
 		const animalCollection = await animals();
 		const animalToUpdate = await this.get(id);
-		const anType = animalToUpdate.animalType;
 		const likes_arr = animalToUpdate.likes;
-		const updatedAnimal = {
-			name: newName,
-			animalType: anType,
-			likes: likes_arr
-		};
+		updatedAnimal.likes = likes_arr;
 		const updateInfo = await animalCollection.updateOne({ _id: ObjectId(id) }, { $set: updatedAnimal });
 		if (updateInfo.modifiedCount === 0) {
 			throw "Could not update dog successfully!";

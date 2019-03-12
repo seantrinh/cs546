@@ -19,10 +19,10 @@ module.exports = {
 		if (!title || typeof title !== 'string') {
 			throw "Valid title not provided!";
 		}
-		if (!author || typeof author !== 'author') {
+		if (!author || typeof author !== 'string') {
 			throw "Valid author not provided!";
 		}
-		if (!content || typeof content !== 'content') {
+		if (!content || typeof content !== 'string') {
 			throw "Valid content not provided!";
 		}
 		const postCollection = await posts();
@@ -41,33 +41,26 @@ module.exports = {
 		const post = await this.getPostById(String(newId));
 		return post;
 	},
-	async updatePost(id, title, content) {
+	async updatePost(id, updatedPost) {
 		if (!id || typeof id !== 'string') {
 			throw "You must provide an id to search for!";
 		}
-		if (!title && !content) {
-			throw "You must provide a new title and/or new content!";
+		const updatedPostData = {};
+		if (!updatedPost.title && !updatedPost.content) {
+			throw "You must provide a title and/or content!";
 		}
-		if (title && typeof title !== 'string') {
-                        throw "Valid title not provided!";
-                }
-                if (content && typeof content !== 'string') {
-                        throw "Valid content not provided!";
-                }
-		const postCollection = await posts();
-		const postToUpdate = await this.getPostById(id);
-		if (!title) {
-			title = postToUpdate.title;
+		if (updatedPost.title) {
+			updatedPostData.title = updatedPost.title; 
 		}
-		if (!content) {
-			content = postToUpdate.content;
+		if (updatedPost.content) {
+			updatedPostData.content = updatedPost.content;
 		}
-		const updatedPost = {
-			title: title,
-			author: author,
-			content: content
+		let updateCommand = {
+			$set: updatedPostData
 		};
-		const updateInfo = await postCollection.updateOne({ _id: ObjectId(id) }, { $set: updatedPost });
+		const postToUpdate = await this.getPostById(id);
+		updatedPostData.author = postToUpdate.author;
+		const updateInfo = await postCollection.updateOne({ _id: ObjectId(id) }, updateCommand);
 		if (updateInfo.modifiedCount === 0) {
 			throw "Could not update post successfully!";
 		}
