@@ -10,8 +10,8 @@ const constructorMethod = app => {
 	app.use("/likes", likeRoutes);
 
 	app.use("*", (req, res) => {
-		res.status(404).json({ error: "Not found!" });
+		res.sendStatus(404);
 	});
-});
+};
 
 module.exports = constructorMethod;

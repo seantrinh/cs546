@@ -9,7 +9,7 @@ router.get("/:id", async (req, res) => {
 	try {
 		const post = await postData.getPostById(req.params.id);
 		res.json(post);
-		res.status(200).json({ message: Got post successfully!" });
+		res.status(200).json({ message: "Got post successfully!" });
 	} catch (e) {
 		res.status(404).json({ message: "Post not found!" });
 	}
@@ -20,7 +20,7 @@ router.get("/", async (req,res) => {
 		const postList = await postData.getAllPosts();
 		res.json(postList);
 	} catch (e) {
-		res.status.(500).send();
+		res.status(500).send();
 	}
 });
 
