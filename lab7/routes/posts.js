@@ -20,7 +20,7 @@ router.get("/", async (req,res) => {
 		const postList = await postData.getAllPosts();
 		res.json(postList);
 	} catch (e) {
-		res.status(500).send();
+		res.status(400).json({ error: e });
 	}
 });
 
