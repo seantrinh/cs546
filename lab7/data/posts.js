@@ -1,6 +1,7 @@
 // CS 546 - Lab 7
 // I pledge my honor that I have abided by the Stevens Honor System.
 const mongoCollections = require("./collections");
+const animals = require("./animals");
 const posts = mongoCollections.posts;
 
 module.exports = {
@@ -13,6 +14,12 @@ module.exports = {
 		if (post === null) {
 			throw "No post with that id!";
 		}
+		const animal = animals.get(post.author);
+                let author = {
+                	id: post.author,
+                	name: `${animal.name}`
+                }
+                post.author = author;
 		return post;
 	},
 	async addPost(title, author, content) {
@@ -92,6 +99,14 @@ module.exports = {
 	async getAllPosts() {
 		const postCollection = await posts();
 		const post_array = await postCollection.find({}).toArray();
+		post_array.forEach(function(post) {
+			const animal = animals.get(post.author);
+			let author = {
+				id: post.author,
+				name: `${animal.name}`
+			}
+			post.author = author;
+		});
 		return post_array;
 	}
 };
