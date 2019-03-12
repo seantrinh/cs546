@@ -75,7 +75,7 @@ module.exports = {
 			updatedAnimal.name = newAnimal.newName;
 		}
 		if (newAnimal.newType) {
-			updatedAnimal.animalType = newAnima.newType;
+			updatedAnimal.animalType = newAnimal.newType;
 		}
 		const animalCollection = await animals();
 		const animalToUpdate = await this.get(id);

@@ -46,14 +46,14 @@ module.exports = {
 			throw "You must provide an id to search for!";
 		}
 		const updatedPostData = {};
-		if (!updatedPost.title && !updatedPost.content) {
+		if (!updatedPost.newTitle && !updatedPost.newContent) {
 			throw "You must provide a title and/or content!";
 		}
-		if (updatedPost.title) {
-			updatedPostData.title = updatedPost.title; 
+		if (updatedPost.newTitle) {
+			updatedPostData.title = updatedPost.newTitle; 
 		}
-		if (updatedPost.content) {
-			updatedPostData.content = updatedPost.content;
+		if (updatedPost.newContent) {
+			updatedPostData.content = updatedPost.newContent;
 		}
 		let updateCommand = {
 			$set: updatedPostData
