@@ -1,0 +1,6 @@
+{
+  "mongoConfig": {
+    "serverUrl": "mongodb://localhost:3000/",
+    "database": "Sean_Trinh_lab7"
+  }
+}

@@ -1,10 +1,11 @@
-// Lab 6 - CS 546
+// CS 546 - Lab 7
 // I pledge my honor that I have abided by the Stevens Honor System.
-
 const express = require("express");
 const app = express();
 const configRoutes = require("./routes");
+const bodyParser = require("body-parser");
 
+app.use(bodyParser.json());
 configRoutes(app);
 
 app.listen(3000, () => {
