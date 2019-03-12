@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 		const animalList = await animalData.getAll();
 		res.json(animalList);
 	} catch (e) {
-		res.status(500).send();
+		res.sendStatus(500);
 	}
 });
 
@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.get("/:id/", async (req, res) => {
+router.get("/:id", async (req, res) => {
 	try {
 		const result = await animalData.get(req.params.id);
 		res.json(result);
@@ -34,7 +34,7 @@ router.get("/:id/", async (req, res) => {
 	}
 });
 
-router.put("/:id/", async (req, res) => {
+router.put("/:id", async (req, res) => {
 	try {
 		await animalData.get(req.params.id);
 	} catch (e) {
@@ -49,7 +49,7 @@ router.put("/:id/", async (req, res) => {
 	}
 });
 
-router.delete("/:id/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
 	try {
 		await animalData.remove(req.params.id);
 	} catch (e) {

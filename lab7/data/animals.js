@@ -35,30 +35,30 @@ module.exports = {
 	async getAll() {
 		const animalCollection = await animals();
 		const animal_array = await animalCollection.find({}).toArray();
-		animal_array.forEach(function(animal) {
-			animal.likes.forEach(function(post) {
-				const postObj = await posts.getPostById(post);
-				let newPost = {
-					id: post,
-					title: `${postObj.title}`
-				};
-				post.likes = newPost;
-			});
-			animal.posts = [];
-			const posts = posts.getAllPosts();
-			let i = 0;
-			for (i; i < posts.size; i++) {
-				if (posts[i].author === animal.id) {
-					let postId = posts[i].id;
-					const postObj = await posts.getPostById(postId);
-					let newPost = {
-						id: postId,
-						title: `${postObj.title}`
-					};
-					animal.posts += newPost;
-				}
-			}	
-		});
+		//animal_array.forEach(function(animal) {
+		//	animal.likes.forEach(function(post) {
+		//		const postObj = posts.getPostById(post);
+		//		let newPost = {
+		//			id: post,
+		//			title: `${postObj.title}`
+		//		};
+		//		post.likes = newPost;
+		//	});
+		//	animal.posts = [];
+		//	const posts = posts.getAllPosts();
+		//	let i = 0;
+		//	for (i; i < posts.size; i++) {
+		//		if (posts[i].author === animal.id) {
+		//			let postId = posts[i].id;
+		//			const postObj = posts.getPostById(postId);
+		//			let newPost = {
+		//				id: postId,
+		//				title: `${postObj.title}`
+		//			};
+		//			animal.posts += newPost;
+		//		}
+		//	}	
+		//});
 		return animal_array;
 	},
 	async get(id) {
@@ -70,28 +70,28 @@ module.exports = {
 		if (animal === null) {
 			throw "No animal with that id!";
 		}
-		animal.likes.forEach(function(post) {
-                	const postObj = await posts.getPostById(post);
-                        let newPost = {
-                        	id: post,
-                                title: `${postObj.title}`
-                        };
-                       	post.likes = newPost;
-                });
-                animal.posts = [];
-                const posts = posts.getAllPosts();
-                let i = 0;
-                for (i; i < posts.size; i++) {
-                	if (posts[i].author === animal.id) {
-                        	let postId = posts[i].id;
-                                const postObj = await posts.getPostById(postId);
-                                let newPost = {
-                                	id: postId,
-                                        title: `${postObj.title}`
-                                };
-                                animal.posts += newPost;
-                        }
-                }
+		//animal.likes.forEach(function(post) {
+                //	const postObj = posts.getPostById(post);
+                //      let newPost = {
+                //        	id: post,
+                //              title: `${postObj.title}`
+                //      };
+                //      post.likes = newPost;
+                //});
+                //animal.posts = [];
+                //const posts = posts.getAllPosts();
+                //let i = 0;
+                //for (i; i < posts.size; i++) {
+                //	if (posts[i].author === animal.id) {
+                //        	let postId = posts[i].id;
+                //              const postObj = posts.getPostById(postId);
+                //              let newPost = {
+                //              	id: postId,
+                //                      title: `${postObj.title}`
+                //              };
+                //              animal.posts += newPost;
+                //      }
+                //}
 		return animal;
 	},
 	async remove(id) {
