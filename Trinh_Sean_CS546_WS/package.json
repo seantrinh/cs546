@@ -9,6 +9,7 @@
   "author": "Sean Trinh 10416232",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongodb": "^3.1.13",
     "node-uuid": "^1.4.8"
