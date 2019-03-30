@@ -1,15 +1,17 @@
+// Lab 8 - CS 546
+// I pledge my honor that I have abided by the Stevens Honor System.
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const peopleData = data.people;
+const people = data.people;
 
-router.post("/", async (req, res) => {
+router.post("/", async(req, res) => {
 	try {
-		const data = req.body;
-		const result = await people.search(data.personName);
-		res.render("posts/search", { title: "People Found", people: result, personName: req.body.personName }); 
+		let result = await people.search_name(req.body.personName);
+		res.render("posts/search", { title: "People Found", people: result, personName: req.body.personName });
 	} catch (e) {
-		res.status(400).render('posts/error',{ title: "400 Error" });
+		res.status(400).render('posts/error', { title: "400 Error" });
+		return;
 	}
 });
 
