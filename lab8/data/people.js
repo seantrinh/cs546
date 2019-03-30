@@ -33,6 +33,9 @@ module.exports = {
 			if (fullName.includes(name)) {
 				result.push(person);
 			}
+			if (result.length == 20) {
+				break;
+			}
 		}
 		return result;
 	}
