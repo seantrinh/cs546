@@ -1,0 +1,17 @@
+<h1>{{title}}</h1>
+<h2>{{personName}}</h2>
+<main class = "people">
+<ul>
+	{{#each people}}
+	<li>
+	<a href="/details/{{this.id}}">{{this.firstName}} {{this.lastName}}</a><br>
+	{{/each}}
+	</li>
+</ul>
+</main>
+{{#unless people.length}}
+<p class="not-found">We're sorry, but no results were found for {{personName}}.</p>
+{{/unless}}
+<br>
+<br>
+<a href = "/" id = "make_another_search">Make another search</a>

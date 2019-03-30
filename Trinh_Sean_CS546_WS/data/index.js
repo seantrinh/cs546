@@ -1,11 +1,7 @@
-// CS 546 - Lab 7
+// Lab 8 - CS 546
 // I pledge my honor that I have abided by the Stevens Honor System.
-const animalData = require("./animals");
-const postData = require("./posts");
-const likeData = require("./likes");
+const people = require("./people.js");
 
 module.exports = {
-	animals: animalData,
-	posts: postData,
-	likes: likeData
+	people: people
 };

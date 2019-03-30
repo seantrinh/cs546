@@ -1,17 +1,17 @@
 {
-  "name": "cs-546-lab-7",
+  "name": "cs-546-lab-8",
   "version": "1.0.0",
-  "description": "cs-546-lab-7",
-  "main": "index.js",
+  "description": "cs-546-lab-8",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "author": "Sean Trinh 10416232",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongodb": "^3.1.13",
-    "node-uuid": "^1.4.8"
+    "express-handlebars": "^3.0.2"
   }
 }
