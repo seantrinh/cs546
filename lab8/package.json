@@ -9,8 +9,11 @@
   "author": "Sean Trinh 10416232",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.2"
+    "express-handlebars": "^3.0.2",
+    "mongodb": "^3.2.2",
+    "path": "^0.12.7"
   }
 }
