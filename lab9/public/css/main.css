@@ -1,0 +1,35 @@
+body {
+	background: red;
+}
+
+h1 {
+	color: blue;
+}
+
+p {
+	color: green;
+}
+
+ol {
+	padding: 20px;
+}
+
+ol li {
+	padding: 5px;
+}
+
+.formArea {
+
+}
+
+.attemptArea {
+
+}
+
+.is-prime {
+	color: #00E676;
+}
+
+.not-prime {
+	color: #FF3D00;
+}
