@@ -19,11 +19,12 @@ ol li {
 }
 
 .formArea {
-
+	padding: 5px;
 }
 
 .attemptArea {
-
+	padding: 5px;
+	background: gray;
 }
 
 .is-prime {

@@ -15,14 +15,18 @@ function isPrime(num1) {
 function submitted() {
 	const number = document.getElementById("input_number").value;
 	if (number) {
-		let result = isPrime(number);
+		let result = isPrime(Number(number));
 		let new_li = document.createElement("li");
-		let text_node = document.createTextNode(number);
-		new_li.appendChild(text_node);
+		//let text_node = document.createTextNode(number);
+		//new_li.appendChild(text_node);
 
 		if (result) {
+			let text_node = document.createTextNode(number + " is a prime number!");
+			new_li.appendChild(text_node);
 			new_li.setAttribute("class", "is-prime");
 		} else {
+			let text_node = document.createTextNode(number + " is not a prime number!");
+			new_li.appendChild(text_node);
 			new_li.setAttribute("class", "not-prime");
 		}
 		
