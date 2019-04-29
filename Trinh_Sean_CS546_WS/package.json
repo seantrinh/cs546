@@ -1,7 +1,7 @@
 {
-  "name": "cs-546-lab-9",
+  "name": "cs-546-lab-10",
   "version": "1.0.0",
-  "description": "cs-546-lab-9",
+  "description": "cs-546-lab-10",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
@@ -9,8 +9,12 @@
   "author": "Sean Trinh 10416232",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.2"
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.16.1",
+    "uuid": "^3.3.2"
   }
 }
