@@ -7,7 +7,7 @@ const users = require("../data/users")
 router.get('/', async (req, res) => {
 	let auth = false;
     	try {
-    		auth = await users.getUserBySession(req.cookies.AuthCookie) != null;
+    		auth = await users.getUserBySession(req.session) != null;
     	} catch (e) {
     		auth = false;
     	}

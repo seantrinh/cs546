@@ -14,14 +14,15 @@ router.post("/", async (req, res) => {
 	try {
 		auth = await users.validate(username, password);
 	} catch (e) {
+		res.sendStatus(401);
 		err = e;
 	}
 
 	if (auth) {
-		const sid = uuid();
-		res.cookie("AuthCookie", sid);
+		//const sid = uuid();
+		//res.cookie("AuthCookie", sid);
 		try {
-			await users.addSession(un, sid);
+			await users.addSession(username, req.session.id);
 		} catch (e) {
 			throw(e);
 		}

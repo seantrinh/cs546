@@ -5,14 +5,18 @@ const router = express.Router();
 const users = require("../data/users");
 
 router.get("/", async (req, res) => {
-	const sid = req.cookies.AuthCookie;
+	const sid = req.session.id;
 	let user = null;
 	try {
 		user = await users.getUserBySession(sid);
 	} catch (e) {
 		throw (e);
 	}
-	if (user != null) {
+	let auth = true;
+	if (user == null) {
+		auth = false;
+	}
+	if (auth) {
 		let data = {
 			title: "Your Info",
 			user: user
@@ -22,7 +26,7 @@ router.get("/", async (req, res) => {
 	else {
 		let data = {
 			title: "Error 403",
-			issue: "You are not logged in."
+			issue: "You are not logged in!"
 		}
 		res.render("error", data);
 	}

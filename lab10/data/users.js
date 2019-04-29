@@ -48,30 +48,50 @@ let users = [
 	}
 ]
 
+function getUserByUsername(username) {
+	if (!username || typeof username !== "string") {
+		throw "You must provide a valid username!";
+	}
+	let i = 0;
+	for (i; i < users.length; i++) {
+		if (users[i].username == username) {
+			return users[i];
+		}
+	}
+	return null;
+}
+
 module.exports = {
 	async getUserByUsername(username) {
-		if (!username || tyepof username !== "string") {
-			throw "You must provide a valid username!";
-		}
-		let i = 0;
-		for (i; i < users.length; i++) {
-			if (users[i].username == username) {
-				return users[i];
+		try {
+			if (!username || typeof username !== "string") {
+				throw "You must provide a valid username!";
 			}
-		}
-		throw "No user with that username!";
-	},
-	async getUserBySession(sid) {
-		let i = 0;
-		for (i; i < users.length; i++) {
-			let j = 0;
-			for (j; j < users[i].sessionIds.length; j++) {
-				if (users[i].sessionIds[j] == sid) {
+			let i = 0;
+			for (i; i < users.length; i++) {
+				if (users[i].username == username) {
 					return users[i];
 				}
 			}
+		} catch (e) {
+			throw "No user with that username!";
 		}
-		throw "No users associated with the given sid!";
+	},
+	async getUserBySession(sid) {
+		try {
+			let i = 0;
+			for (i; i < users.length; i++) {
+				let j = 0;
+				for (j; j < users[i].sessionIds.length; j++) {
+					if (users[i].sessionIds[j] == sid) {
+						return users[i];
+					}
+				}
+			}
+			return null;
+		} catch (e) {
+			throw(e);
+		}
 	},
 	async validate(username, password) {
 		if (!username || typeof username !== "string") {
@@ -92,11 +112,12 @@ module.exports = {
 		}
 	},
 	async addSession(username, sid) {
-		let user = getUserByUsername(username);
-		if (user == null) {
-			throw "No user with that username!";
+		try {
+			let user = getUserByUsername(username);
+			user.sessionIds.push(sid);
+		} catch (e) {
+			throw(e);
 		}
-		user.sessionIds.push(sid);
 		return true;
 	},
 	async deleteSession(sid) {
@@ -109,6 +130,6 @@ module.exports = {
 				}
 			}
 		}
-		throw "Invalid sid!";
+		return null;
 	}
 };

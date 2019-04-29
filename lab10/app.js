@@ -4,8 +4,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const configRoutes = require("./routes");
 const exphbs = require("express-handlebars");
-const cookieParser = require("cookie-parser");
 const userData = require("./data/users.js");
+
+const session = require("express-session");
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,7 +14,12 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-app.use(cookieParser());
+app.use(session({
+	name: 'AuthCookie',
+	secret: 'some secret string!',
+	resave: false,
+	saveUninitialized: true
+}));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 configRoutes(app);
