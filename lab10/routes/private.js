@@ -4,49 +4,31 @@ const express = require('express');
 const router = express.Router();
 const users = require("../data/users");
 
-async function checkIfAuth(req, res, next) {
+var checkIfAuth = async function (req, res, next) {
 	const sid = req.session.id;
 	let user = null;
 	try {
 		user = await users.getUserBySession(sid);
+		next();
 	} catch (e) {
 		let data = {
                         title: "Error 403",
                         issue: "You are not logged in!"
                 }
                 res.render("error", data);
+		let logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Non-Authenticated User)";
+		console.log(logMessage);
 	}
 }
-//router.use(checkIfAuth);
+router.use(checkIfAuth);
 router.get("/", async (req, res) => {
-	const sid = req.session.id;
-	let user = null;
-	try {
-		user = await users.getUserBySession(sid);
-	} catch (e) {
-		throw (e);
+	let user = await users.getUserBySession(req.session.id);
+	let data = {
+		title: "Your Info",
+		user: user
 	}
-	let auth = true;
-	if (user == null) {
-		auth = false;
-	}
-	let logMessage = "";
-	if (auth) {
-		let data = {
-			title: "Your Info",
-			user: user
-		}
-		res.render("private", data);
-		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Authenticated User)";
-	}
-	else {
-		let data = {
-			title: "Error 403",
-			issue: "You are not logged in!"
-		}
-		res.render("error", data);
-		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Non-Authenticated User)";
-	}
+	res.render("private", data);
+	let logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Authenticated User)";
 	console.log(logMessage);
 });
 
