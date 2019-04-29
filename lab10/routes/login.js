@@ -3,7 +3,6 @@
 const express = require('express');
 const router = express.Router();
 const users = require("../data/users");
-const uuid = require("uuid/v4");
 
 router.post("/", async (req, res) => {
 	const username = req.body.username;
@@ -19,8 +18,6 @@ router.post("/", async (req, res) => {
 	}
 
 	if (auth) {
-		//const sid = uuid();
-		//res.cookie("AuthCookie", sid);
 		try {
 			await users.addSession(username, req.session.id);
 		} catch (e) {

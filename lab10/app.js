@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const configRoutes = require("./routes");
 const exphbs = require("express-handlebars");
 const userData = require("./data/users.js");
-
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
 const app = express();
@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+
+app.use(cookieParser());
 
 app.use(session({
 	name: 'AuthCookie',

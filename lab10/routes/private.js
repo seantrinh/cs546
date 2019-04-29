@@ -4,6 +4,20 @@ const express = require('express');
 const router = express.Router();
 const users = require("../data/users");
 
+async function checkIfAuth(req, res, next) {
+	const sid = req.session.id;
+	let user = null;
+	try {
+		user = await users.getUserBySession(sid);
+	} catch (e) {
+		let data = {
+                        title: "Error 403",
+                        issue: "You are not logged in!"
+                }
+                res.render("error", data);
+	}
+}
+//router.use(checkIfAuth);
 router.get("/", async (req, res) => {
 	const sid = req.session.id;
 	let user = null;
