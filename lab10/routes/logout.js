@@ -10,6 +10,8 @@ router.get("/", async (req, res) => {
 	res.clearCookie("AuthCookie");
 	await users.deleteSession(sid);
 	res.render("logout", {title: "Logged out"});
+	let logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Authenticated User)";
+	console.log(logMessage);
 });
 
 module.exports = router;

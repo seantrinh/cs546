@@ -12,13 +12,17 @@ router.get('/', async (req, res) => {
     	} catch (e) {
     		auth = false;
     	}
-
+	let logMessage = "";
+	//let logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " ";
     	if (auth) {
     		res.redirect("/private");
+		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Authenticated User)";
     	}
 	else {
     		res.render("root", {title: "Login Screen"});
+		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Non-Authenticated User)";
     	}
+	console.log(logMessage);
 });
 
 module.exports = router;

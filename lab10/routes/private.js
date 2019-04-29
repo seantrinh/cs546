@@ -30,12 +30,14 @@ router.get("/", async (req, res) => {
 	if (user == null) {
 		auth = false;
 	}
+	let logMessage = "";
 	if (auth) {
 		let data = {
 			title: "Your Info",
 			user: user
 		}
 		res.render("private", data);
+		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Authenticated User)";
 	}
 	else {
 		let data = {
@@ -43,7 +45,9 @@ router.get("/", async (req, res) => {
 			issue: "You are not logged in!"
 		}
 		res.render("error", data);
+		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Non-Authenticated User)";
 	}
+	console.log(logMessage);
 });
 
 module.exports = router;

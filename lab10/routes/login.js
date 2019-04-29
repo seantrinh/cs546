@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 		res.sendStatus(401);
 		err = e;
 	}
-
+	let logMessage = "";
 	if (auth) {
 		try {
 			await users.addSession(username, req.session.id);
@@ -24,10 +24,13 @@ router.post("/", async (req, res) => {
 			throw(e);
 		}
 		res.redirect("/private");
+		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Authenticated User)";
 	}
 	else {
 		res.render("root", {title: "Login Screen", error: err});
+		logMessage = "[" + new Date().toUTCString() + "]: " + req.method + " " + req.originalUrl + " (Non-Authenticated User)";
 	}
+	console.log(logMessage);
 });
 
 module.exports = router;
